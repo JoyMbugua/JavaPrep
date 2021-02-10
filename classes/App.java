@@ -13,32 +13,42 @@ public class App{
 
 
         Vehicle[] allVehicles = {hatchback, suv, sedan, truck, crossover};
-        System.out.println("All Vehicles:");
 
-        for(Vehicle vehicle : allVehicles){
-            System.out.println("--------------------");
-            System.out.println(vehicle);
-            System.out.println(vehicle.mYear);
-            System.out.println(vehicle.mBrand);
-            System.out.println(vehicle.mModel);
-            System.out.println(vehicle.mMiles);
-            System.out.println(vehicle.mPrice);
-        }
+        System.out.println("Welcome to our car dealership. What would you like to do? Enter one of the following options: All Vehicles or Search Price");
+        String navigationChoice = console.readLine();
 
-        System.out.println("what is your maximum budget for a vehicle?");
-        String stringUserMaxBudget = console.readLine();
-        int userMaxBudget = Integer.parseInt(stringUserMaxBudget);
-
-        for(Vehicle vehicle : allVehicles){
-            if(vehicle.worthBuying(userMaxBudget)){
-                System.out.println("---------");
-                System.out.println("You can afford:");
+        if(navigationChoice.equals("All Vehicles")){
+            for(Vehicle vehicle : allVehicles){
+                System.out.println("--------------------");
+                System.out.println(vehicle);
                 System.out.println(vehicle.mYear);
                 System.out.println(vehicle.mBrand);
                 System.out.println(vehicle.mModel);
                 System.out.println(vehicle.mMiles);
                 System.out.println(vehicle.mPrice);
             }
+        } else if(navigationChoice.equals("Search Price")){
+            System.out.println("what is your maximum budget for a vehicle?");
+            String stringUserMaxBudget = console.readLine();
+            int userMaxBudget = Integer.parseInt(stringUserMaxBudget);
+
+            for(Vehicle vehicle : allVehicles){
+                if(vehicle.worthBuying(userMaxBudget)){
+                    System.out.println("---------");
+                    System.out.println("You can afford:");
+                    System.out.println(vehicle.mYear);
+                    System.out.println(vehicle.mBrand);
+                    System.out.println(vehicle.mModel);
+                    System.out.println(vehicle.mMiles);
+                    System.out.println(vehicle.mPrice);
+                }
+        }
+
+
+
+
+        } else {
+            System.out.println("Sorry, we do not recognize your input.");
         }
     }
 }
