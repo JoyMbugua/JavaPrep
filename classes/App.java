@@ -1,4 +1,6 @@
 import java.io.Console;
+import java.util.ArrayList;
+import java.util.List;
 public class App{
     public static void main(String[] args){
 
@@ -12,9 +14,14 @@ public class App{
 
 
 
-        Vehicle[] allVehicles = {hatchback, suv, sedan, truck, crossover};
+        List<Vehicle> allVehicles = new ArrayList<Vehicle>();
+        allVehicles.add(hatchback);
+        allVehicles.add(suv);
+        allVehicles.add(sedan);
+        allVehicles.add(truck);
+        allVehicles.add(crossover);
 
-        System.out.println("Welcome to our car dealership. What would you like to do? Enter one of the following options: All Vehicles or Search Price");
+        System.out.println("Welcome to our car dealership. What would you like to do? Enter one of the following options: All Vehicles, Add a vehicle, or Search Price");
         String navigationChoice = console.readLine();
 
         if(navigationChoice.equals("All Vehicles")){
@@ -47,6 +54,24 @@ public class App{
 
 
 
+        } else if(navigationChoice.equals("Add a vehicle")){
+            System.out.println("Alright! Let's add another vehicle! What year was this vehicle made?");
+            String newYear = console.readLine();
+            int theYear = Integer.parseInt(newYear);
+            System.out.println("Great! what make or brand is the vehicle?");
+            String userBrand = console.readLine();
+            System.out.println("Got it! what model is it?");
+            String userModel = console.readLine();
+            System.out.println("And how many miles does it have on it?");
+            int userMiles = Integer.parseInt(console.readLine());
+            System.out.println("Finally, what is its price?");
+            int userPrice = Integer.parseInt(console.readLine());
+
+            Vehicle userVehicle = new Vehicle(theYear, userBrand, userModel, userMiles, userPrice);
+            //action you want with the userVehicle e.g. printing
+
+            allVehicles.add(userVehicle);
+            System.out.println(allVehicles);
         } else {
             System.out.println("Sorry, we do not recognize your input.");
         }
