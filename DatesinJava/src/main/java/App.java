@@ -14,7 +14,7 @@ public class App {
 
         //Example3
         String startDay = "11/02/2021";
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         Date startDate;
         try{
             startDate = df.parse(startDay);
@@ -27,5 +27,21 @@ public class App {
         } catch(ParseException e){
             e.printStackTrace();
         }
+
+        //Example4
+        String earlierDateString = "07/07/2020";
+        DateFormat dF = new SimpleDateFormat("dd/mm/yyyy");
+        Date earlierDate = new Date();
+        System.out.println("Earlier Date:" + earlierDate);
+
+        try{
+            earlierDate = dF.parse(earlierDateString);
+
+        } catch(ParseException e){
+            e.printStackTrace();
+        }
+        Date currentDate = new Date();
+        boolean isTodayAfterEarlierDate = currentDate.after(earlierDate);
+        System.out.println("Today is after earlier date: " + isTodayAfterEarlierDate);
     }
 }
