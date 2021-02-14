@@ -1,0 +1,9 @@
+if(charCode >= 'A' && charCode <= 'Z'){ //to prevent other things like spaces from being converted
+                int newPosition = (char)(arr[i] + this.password);
+                letter = (char)newPosition;
+            
+            cipheredWord = cipheredWord + letter;
+            } else {
+                
+                cipheredWord = cipheredWord + arr[i]; //NOT THE BEST but takes care of the spaces
+            }
