@@ -1,0 +1,22 @@
+<form action="/rectangles/new" method="post">
+    <p>Calculate A Rectangle</p>
+
+    <label for="height">Height:</label>
+    <input type="text" id="height" name="height">
+
+    <label for="width">Width:</label>
+    <input type="text" id="width" name="width">
+
+    <button type="submit" class="btn btn-default">Go!</button>
+</form>
+
+{{#each myRectangles}}
+    <h3>Your rectangle's height is {{ height}}</h3>
+    <h3>Your rectangle's width is {{ width }}</h3>
+
+    {{#if shape}}
+        <h3>Your rectangle is a square!</h3>
+    {{else}}
+        <h3>Your rectangle isn't a square!</h3>
+    {{/if}}
+{{/each}}
