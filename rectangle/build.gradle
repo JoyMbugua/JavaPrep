@@ -1,9 +1,14 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'com.moringa.rectangle'
 version '1.0-SNAPSHOT'
+
+mainClassName = 'App'
+
+apply plugin: 'java'
 
 sourceCompatibility = 1.8
 

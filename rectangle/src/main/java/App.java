@@ -1,19 +1,47 @@
+import models.Cube;
 import models.Rectangle;
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+import static spark.Spark.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
+
+
 
 public class App {
 
-    public static void main(String[] args){
-        Scanner scan = new Scanner(System.in);
+    public static void main(String[] args) {
+        staticFileLocation("/public");
 
-        System.out.println("Enter the height of your rectangle: ");
-        int height = Integer.parseInt(scan.nextLine());
+        get("/", (request, response) -> {
+            Map<String, ArrayList<Rectangle>> model = new HashMap<>();
 
-        System.out.println("Enter the width of the rectangle: ");
-        int width = Integer.parseInt(scan.nextLine());
+            ArrayList myRectangleArrayList = Rectangle.getAll();
 
-        Rectangle rectangle = new Rectangle(height, width);
-        System.out.println("Let's see if this is a square or not..." + rectangle.isSquare());
+            model.put("myRectangles", myRectangleArrayList);
+            return new ModelAndView(model, "index.hbs");
+
+        }, new HandlebarsTemplateEngine());
+
+        post("/rectangles/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<>();
+
+            int height = Integer.parseInt(request.queryParams("height"));
+
+            int width = Integer.parseInt(request.queryParams("width"));
+
+            Rectangle myRectangle = new Rectangle(height, width);
+
+            model.put("myRectangle", myRectangle);
+
+            if(myRectangle.getShape()) {
+                Cube myCube = new Cube(myRectangle);
+                model.put("myCube", myCube);
+            }
+            return new ModelAndView(model, "rectangle-detail.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }

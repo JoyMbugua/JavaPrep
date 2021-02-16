@@ -1,0 +1,19 @@
+{{#partial "content"}}
+    <h2>Exciting stats on your rectangle!</h2>
+
+    {{#if myRectangle}}
+        <h3>Your rectangle's height is {{ myRectangle.height }}</h3>
+        <h3>Your rectangle's width is {{ myRectangle.width }}</h3>
+        {{#if myRecatngle.shape}}
+            <h3>Your rectangle is a square.</h3>
+            {{myCube.surfaceArea}} units surface area and <br> {{myCube.volume}} units volume.
+        {{else}}
+            <h3>Your rectangle's a square, sorry.</h3>
+        {{/if}}
+    {{else}}
+        <h3>No details found.</h3>
+
+    {{/if}}
+
+{{/partial}}
+{{> layout.hbs}}
